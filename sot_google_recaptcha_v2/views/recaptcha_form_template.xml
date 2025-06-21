@@ -1,0 +1,27 @@
+<odoo>
+
+    <template id="recaptcha_layout" name="Custom Code Layout" inherit_id="web.layout" priority="55">
+        <xpath expr="//head" position="inside">
+            <script src="//www.google.com/recaptcha/api.js" async="async" defer="defer"></script>
+        </xpath>
+    </template>
+
+    <template id="recaptcha_signup" inherit_id="auth_signup.signup" name="OAuth Signup buttons">
+        <xpath expr="//button[@type='submit']" position="before">
+            <div class="form-group">
+                <div class="g-recaptcha"
+                     t-att-data-sitekey="request.env['ir.config_parameter'].sudo().get_param('qubic_google_recaptcha_v2.recaptcha_v2_public_key')"></div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="recaptcha_reset_password" inherit_id="auth_signup.reset_password" name="OAuth Reset Password buttons">
+        <xpath expr="//button[@type='submit']" position="before">
+            <div class="form-group">
+                <div class="g-recaptcha"
+                     t-att-data-sitekey="request.env['ir.config_parameter'].sudo().get_param('qubic_google_recaptcha_v2.recaptcha_v2_public_key')"></div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
